@@ -15,9 +15,8 @@ sqlc = SQLContext(sc)
 #print(csv_rdd.collect())
 # Much easier to read the CSV with the header and then write to parquet using the DataFrame library..
 f_directory = "hdfs://localhost:54310/bigdata/rdl/"
-f_filename = "bitcoin." + today_dt + ".csv"
+f_filename = "apple." + today_dt + ".csv"
 f_filepath = f_directory + f_filename
-
 
 # Much easier to read the CSV with the header and then write to parquet using the DataFrame library..
 df = sqlc.read.option("inferschema","true").option("header","true").csv(f_filepath)
@@ -52,7 +51,7 @@ df3 = df3.withColumn("f_filedate", lit(datetime.strptime(today_dt, '%Y%m%d'))) #
 df4 = df3.withColumn("j_sysdate", lit(arrow.now().timestamp))
 
 f_directory_out = "hdfs://localhost:54310/user/hduser/"
-f_filename_out = "bitcoin." + today_dt + ".parquet"
+f_filename_out = "apple." + today_dt + ".parquet"
 f_filepath_out = f_directory_out + f_filename_out
 
 df4.write.mode("overwrite").parquet(f_filepath_out)

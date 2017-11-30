@@ -10,18 +10,36 @@ from pyspark.sql.functions import col
 
 sc = SparkContext()
 
-# Much easier to read the CSV with the header and then write to parquet using the DataFrame library..
-f_full_path = "hdfs://localhost:54310/user/hduser/bitcoin." + today_dt + ".parquet"
-f_filename = "bitcoin." + today_dt + ".parquet"
 
-df = sqlc.read.parquet(f_full_path)
+#df = sqlc.read.parquet(f_full_path)
 
-df.show()
-df.printSchema()
+#df.show()
+#df.printSchema()
 
-from pyspark.sql.functions import lit
-df2 = df.withColumn("f_full_path", lit(f_full_path)) # lit() function
-df2 = df2.withColumn("f_filename", lit(f_filename))
+#df2.show()
+#df2.printSchema()
 
-df2.show()
-df2.printSchema()
+
+URI           = sc._gateway.jvm.java.net.URI
+Path          = sc._gateway.jvm.org.apache.hadoop.fs.Path
+FileSystem    = sc._gateway.jvm.org.apache.hadoop.fs.FileSystem
+Configuration = sc._gateway.jvm.org.apache.hadoop.conf.Configuration
+
+
+fs = FileSystem.get(URI("hdfs://localhost:54310"), Configuration())
+
+status = fs.listStatus(Path('/bigdata/rdl/'))
+
+print(dir(fs))
+print(dir(status))
+for fileStatus in status:
+    print fileStatus.getPath()
+    print(dir(fileStatus))
+    mod_time = fileStatus.getModificationTime.ToString()
+    print(mod_time)
+    print(mod_time)
+    print(dir(mod_time))
+    print (fileStatus.getOwner)
+    print (fileStatus.getGroup)
+#    print(dir(status))
+#    print(dir(fs))

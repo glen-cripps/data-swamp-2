@@ -8,8 +8,8 @@
 import arrow
 today_dt = arrow.now().format('YYYYMMDD')
 
-local_path = "/data/dumpster/bitcoin.csv"
-hdfs_path = "/bigdata/rdl/bitcoin." +  today_dt + ".csv"
+local_path = "/data/dumpster/apple.csv"
+hdfs_path = "/bigdata/rdl/apple." +  today_dt + ".csv"
 
 import subprocess
 subprocess.call(["hadoop", "fs", "-rm", "-f", hdfs_path])
