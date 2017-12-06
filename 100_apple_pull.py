@@ -1,5 +1,12 @@
-# pip install pandas-datareader
+import sys
+import os
+print __file__
+print sys.argv[0]
+print os.path.basename(__file__)
+print os.path.basename(sys.argv[0])
 
+
+# pip install pandas-datareader
 import pandas as pd
 #import pandas.io.data as web  # Package and modules for importing data; this code may change depending on pandas version
 import pandas_datareader.data as web

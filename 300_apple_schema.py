@@ -50,7 +50,7 @@ df3 = df3.withColumn("f_filedate", lit(datetime.strptime(today_dt, '%Y%m%d'))) #
 
 df4 = df3.withColumn("j_sysdate", lit(arrow.now().timestamp))
 
-f_directory_out = "hdfs://localhost:54310/user/hduser/"
+f_directory_out = "hdfs://localhost:54310/bigdata/std/"
 f_filename_out = "apple." + today_dt + ".parquet"
 f_filepath_out = f_directory_out + f_filename_out
 

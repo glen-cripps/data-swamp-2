@@ -46,12 +46,12 @@ df3 = df3.withColumn("f_unixgroup", lit("hdgroup"))
 df3 = df3.withColumn("f_filebytes", lit(123.0)) # example to write a number field column
 from datetime import datetime
 df3 = df3.withColumn("f_filedate", lit(datetime.strptime(today_dt, '%Y%m%d'))) # example to write a date field
-
+df3 = df3.withColumn("j_jobdate", lit(today_dt))
 ## now you store all the attributes about this process with prefix j
 
 df4 = df3.withColumn("j_sysdate", lit(arrow.now().timestamp))
 
-f_directory_out = "hdfs://localhost:54310/user/hduser/"
+f_directory_out = "hdfs://localhost:54310/bigdata/std/"
 f_filename_out = "bitcoin." + today_dt + ".parquet"
 f_filepath_out = f_directory_out + f_filename_out
 
