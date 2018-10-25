@@ -12,7 +12,11 @@ local_path = "/data/dumpster/apple.csv"
 hdfs_path = "/bigdata/rdl/apple." +  today_dt + ".csv"
 
 import subprocess
-subprocess.call(["hadoop", "fs", "-rm", "-f", hdfs_path])
-subprocess.call(["hadoop", "fs", "-put", local_path, hdfs_path])
+#subprocess.call(["hadoop","fs", "-ls"])
+#subprocess.call(["hadoop", ])
+
+#subprocess.call(["ls -l"])
+subprocess.call(["/usr/local/hadoop/bin/hadoop", "fs", "-rm", "-f", hdfs_path])
+subprocess.call(["/usr/local/hadoop/bin/hadoop", "fs", "-put", local_path, hdfs_path])
 
 

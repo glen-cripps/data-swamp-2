@@ -1,6 +1,8 @@
 import arrow
 today_dt = arrow.now().format('YYYYMMDD')
 
+import sys
+sys.path.append('/usr/local/spark/python')
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
 from pyspark.sql.types import StringType, StructType, StructField

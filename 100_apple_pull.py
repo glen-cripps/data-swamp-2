@@ -16,7 +16,7 @@ import pandas_datareader.data as web
 import datetime
 
 # We will look at stock prices over the past year, starting at January 1, 2016
-start = datetime.datetime(2016, 1, 1)
+start = datetime.datetime(2000, 1, 1)
 end = datetime.date.today()
 
 # Let's get Apple stock data; Apple's ticker symbol is AAPL

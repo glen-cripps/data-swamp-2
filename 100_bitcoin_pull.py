@@ -22,7 +22,8 @@ def get_quandl_data(quandl_id):
 #        print('Loaded {} from cache'.format(quandl_id))
 #    except (OSError, IOError) as e:
     print('Downloading {} from Quandl'.format(quandl_id))
-    df = quandl.get(quandl_id, returns="pandas")
+    df = quandl.get(quandl_id, returns="pandas",api_key = "Grz4BLFy5aEf_sDetB_9")
+
     df.to_pickle(cache_path)
     print('Cached {} at {}'.format(quandl_id, cache_path))
     return df
@@ -33,7 +34,7 @@ btc_usd_price_kraken = get_quandl_data('BCHARTS/KRAKENUSD')
 # show some data
 print(btc_usd_price_kraken)
 
-# write the raw pickle file locally
+# write the raw pickle file locall
 with open(local_file, 'wb') as f:
     pickle.dump(btc_usd_price_kraken, f)
 
@@ -42,7 +43,7 @@ btc_usd_price_kraken.to_csv("/data/dumpster/bitcoin.csv")
 btc_usd_price_kraken.to_json("/data/dumpster/bitcoin.json")
 #'btc_usd_price_kraken.to_parquet("/hadooper/daily_dump/bitcoin.parquet","fastparquet")
 
-
-
+apple = quandl.get_table('ZACKS/EET', ticker='AAPL', per_end_date='2018-03-31,2018-06-30,2018-09-30,2018-12-31,2017-03-31,2017-06-30,2017-09-30,2017-12-31')
+print("hello")
     #local_file = '/hadooper/daily_drop/bitcoin.parquet'
 #btc_usd_price_kraken.write.parquet(local_file)

@@ -1,29 +1,35 @@
 import arrow
 today_dt = arrow.now().format('YYYYMMDD')
 
+import sys
+sys.path.append('/usr/local/spark/python')
+
 from pyspark import SparkContext
 from pyspark import HiveContext
 from pyspark.sql import SQLContext
 from pyspark.sql.types import StringType, StructType, StructField
 from pyspark.sql.functions import col
 
-
-
 sc = SparkContext()
 sqlc = HiveContext(sc)
 
+f_full_path = "hdfs://localhost:54310" + "/bigdata/std/" + "bitcoin." + today_dt + ".parquet"
 
-f_full_path = "hdfs://localhost:54310" + "/bigdata/std/" + "bitcoin.20171206.parquet"
 df = sqlc.read.parquet(f_full_path)
 
 df.show()
+
 df.printSchema()
 
-df.write.mode("overwrite").partitionBy("j_jobdate").saveAsTable("bitcoin123123")
-# df.write.mode("overwrite").save("/user/hive/warehouse/bitcoin123123/j_jobdate=20171207")
+df.write.mode("overwrite").partitionBy("j_jobdate").saveAsTable("bitcoin_" + today_dt )
 
+pandazzz = df.toPandas()
+#df.describe
 
+df = sqlc.sql("show tables")
+df.show()
 
+#sqlc.sql("use default;")
 #df2.show()
 #df2.printSchema()
 
@@ -54,3 +60,4 @@ df.write.mode("overwrite").partitionBy("j_jobdate").saveAsTable("bitcoin123123")
 #    print (fileStatus.getGroup)
 #    print(dir(status))
 #    print(dir(fs))
+print("End")

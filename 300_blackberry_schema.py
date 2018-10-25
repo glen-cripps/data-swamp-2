@@ -1,13 +1,16 @@
 data_dic = dict(name='blackberry',
                 stock_ticker='bbry')
 
-env_dic = dict(dumpster_path='/data/dumpster/',
-               bigly_box='hdfs://localhost:54310',
-               bigly_rdl="/bigdata/rdl",
-               bigly_std="/bigdata/std")
+env_dic = dict(local_path='/data/dumpster/',
+               server_host='hdfs://localhost:54310',
+               server_rdl="/bigdata/rdl",
+               server_std="/bigdata/std")
 
 import arrow
 today_dt = arrow.now().format('YYYYMMDD')
+
+import sys
+sys.path.append('/usr/local/spark/python')
 
 from pyspark import SparkContext
 from pyspark.sql import SQLContext

@@ -1,5 +1,12 @@
+import pandas as pd
+desired_width = 320
+pd.set_option('display.width', desired_width)
+
 import arrow
 today_dt = arrow.now().format('YYYYMMDD')
+
+import sys
+sys.path.append('/usr/local/spark/python')
 
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
@@ -45,7 +52,7 @@ df3 = df3.withColumn("f_unixgroup", lit("hdgroup"))
 df3 = df3.withColumn("f_filebytes", lit(123.0)) # example to write a number field column
 from datetime import datetime
 df3 = df3.withColumn("f_filedate", lit(datetime.strptime(today_dt, '%Y%m%d'))) # example to write a date field
-
+df3.show()
 ## now you store all the attributes about this process with prefix j
 
 df4 = df3.withColumn("j_sysdate", lit(arrow.now().timestamp))
@@ -58,7 +65,12 @@ df4.write.mode("overwrite").parquet(f_filepath_out)
 # have some fun with columns containing funny characters tomorrow...
 df4.show()
 df4.printSchema()
-#print(df.describe())
+
+
+df5 = df4.toPandas()
+
+
+print(df.describe())
 #df.show()
 #from pyspark.sql import HiveContext
 #hc = HiveContext(sc)
