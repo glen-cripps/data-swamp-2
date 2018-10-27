@@ -3,6 +3,7 @@
 # They only need to read whatever data they can get and save local into the daily drop folder
 # dates and etc is not to managed here, just get as much current data as is manageable and save it to a file
 # cleanup processes will ensure the disk is managed provided we stick to our naming conventions
+# fucking git
 
 import pickle
 import quandl
