@@ -11,7 +11,7 @@ local_file = '/data/dumpster/bitcoin.pickle'
 # function from internet to read data from quandl and return a pickle dataset
 # yes i dont know wtf a pickle file is
 #test
-# delete the fucker file if it already exists
+# delete the file if it already exists
 
 
 def get_quandl_data(quandl_id):

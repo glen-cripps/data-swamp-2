@@ -16,7 +16,7 @@ import pandas_datareader.data as web
 import datetime
 
 # We will look at stock prices over the past year, starting at January 1, 2016
-start = datetime.datetime(2016, 1, 1)
+start = datetime.date.today() - datetime.timedelta(days=30)
 end = datetime.date.today()
 
 
